@@ -1,0 +1,20 @@
+{% extends 'AuthorCourses/base.html' %}
+
+{% block content %}
+	<center>
+	{% if searched %}
+		<h1>You Searched For "{{ searched }}"</h1>
+		<br/>
+		{% for content in contents %}
+			<a href="{% url 'AuthorCourses:show_content' content.id %}">{{ content }}</a><br/>
+		{% endfor %}
+	
+	{% else %}
+		<h1>Hey!You Forgot To Search For An Item...</h1>
+	{% endif %}
+
+	
+
+	
+	</center>
+{% endblock %}

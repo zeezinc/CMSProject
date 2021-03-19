@@ -1,0 +1,34 @@
+{% extends "AuthorCourses/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    {{form.contentName|as_crispy_field}}
+    {{form.contentBody|as_crispy_field}}
+    {{form.contentSummary|as_crispy_field}}
+    <div class="row">
+        <div class="col-md-4">
+            {{form.category|as_crispy_field}}
+        </div>
+        <div class="col-md-8">
+            {{form.doc|as_crispy_field}}
+            <a href="{% url 'AuthorCourses:upload' %}" class="btn btn-primary btn-sm mb-3">
+                <i class="fas fa-list"></i> Add Document
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-plus-square"></i>
+                Submit</button>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'AuthorCourses:item_list' %}" class="btn btn-secondary btn-block btn-lg">
+                <i class="fas fa-list"></i> Back to list
+            </a>
+        </div>
+    </div>
+
+</form>
+{% endblock content %}

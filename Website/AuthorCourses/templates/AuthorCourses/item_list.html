@@ -1,0 +1,44 @@
+{% extends "AuthorCourses/base.html" %}
+
+
+{% block content %}
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Title</td>
+            <td>Body</td>
+            <td>Summary</td>
+            <td>Category</td>
+            <td>Document</td>
+            <td>
+                <a href="{% url 'AuthorCourses:item_insert' %}" class="btn btn-outline-success">
+                    <i class="fas fa-plus"></i> Add New
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in item_list %}
+            <tr>
+                <td>{{item.contentName}}</td>
+                <td>{{item.contentBody}}</td>
+                <td>{{item.contentSummary}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.doc}}</td>
+                <td>
+                    <a href="{% url 'AuthorCourses:item_update' item.id %}" class="btn text-secondary px-0">
+                        <i class="far fa-edit fa-lg"></i>
+                    </a>
+                    <form action="{% url 'AuthorCourses:item_delete' item.id %}" method="post" class="d-inline p-2">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">
+                            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

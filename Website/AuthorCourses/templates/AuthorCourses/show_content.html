@@ -1,0 +1,51 @@
+{% extends 'AuthorCourses/base.html' %}
+
+{% block content %}
+
+
+<div class="card">
+  <div class="card-header">
+    Content Details:
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ content }}</h5>
+    <p class="card-text">
+      <ul>
+
+	<div class="card-header" >
+        <li>Title:</li>
+        <ul>{{ content.contentName }}</ul>
+    </div>
+
+      <div class="card-header">
+          <li>Body:</li>
+          <ul>{{ content.contentBody }}</ul>
+    </div>
+
+      <div class="card-header">
+          <li>Summary:</li>
+          <ul>{{ content.contentSummary }}</ul>
+    </div>
+
+      <div class="card-header">
+          <li>Category:</li>
+          <ul>{{ content.category }}</ul>
+    </div>
+
+      <div class="card-header">
+          <li>Document:</li>
+          <ul><a href="{% url 'AuthorCourses:upload' %}">{{content.doc}}</a></ul>
+    </div>
+
+      </ul>
+
+
+
+    </p>
+  </div>
+</div>
+
+
+
+	</center>
+{% endblock %}
