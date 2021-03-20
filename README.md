@@ -10,4 +10,4 @@
   <img src="screen3.png" width="256" height="455">
 </p>
 
-<img src="https://github.com/favicon.ico" width="48">
+<img src="https://user-images.githubusercontent.com/35701613/111859637-490b1800-8968-11eb-9fcb-3f9a03f5ab92.png" width="48">
