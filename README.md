@@ -23,6 +23,16 @@ Then install the dependencies:
 Note the `(env)` in front of the prompt. This indicates that this terminal
 session operates in a virtual environment set up by `virtualenv2`.
 
+Custom Settings needed in Settings.py:
+
+STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = 'home'
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 Once `pip` has finished downloading the dependencies:
 ```sh
 (env)$ cd project
