@@ -33,6 +33,12 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+To sync database with the project apply migrations,0020 being the latest:
+
+```sh
+(env)$ python manage.py migrate
+```
+
 Once `pip` has finished downloading the dependencies:
 ```sh
 (env)$ cd project
@@ -40,6 +46,11 @@ Once `pip` has finished downloading the dependencies:
 ```
 And navigate to `http://127.0.0.1:8000/CMSProject/`
 
+In case you want to create admin,run:
+
+```sh
+(env)$ python manage.py createsuperuser
+```
 
 
 
