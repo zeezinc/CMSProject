@@ -26,12 +26,12 @@
                 <td>{{item.category}}</td>
                 <td>{{item.doc}}</td>
                 <td>
-                    <a href="{% url 'AuthorCourses:item_update' item.id %}" class="btn text-secondary px-0">
+                    <a href="{% url 'AuthorCourses:item_update' item.id %}" class="btn d-block text-secondary px-0">
                         <i class="far fa-edit fa-lg"></i>
                     </a>
-                    <form action="{% url 'AuthorCourses:item_delete' item.id %}" method="post" class="d-inline p-2">
+                    <form action="{% url 'AuthorCourses:item_delete' item.id %}" method="post" class="p-3">
                         {% csrf_token %}
-                        <button type="submit" class="btn">
+                        <button type="submit" class="btn d-block">
                             <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
                         </button>
                     </form>
