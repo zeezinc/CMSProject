@@ -31,7 +31,7 @@ Once `pip` has finished downloading the dependencies:
 And navigate to `http://127.0.0.1:8000/CMSProject/`
 
 
-<ul style="font-weight: bold;">Functionalities:
+<ul style="font-weight: bold">Functionalities:
 
 <li>The system will have 2 types of user role: admin and author.Admin users are created using seeding</li>
 <li>Author can register and login using email to the CMS</li>
@@ -41,7 +41,7 @@ And navigate to `http://127.0.0.1:8000/CMSProject/`
 
 </ul>
 
-<ol style="font-weight: bold;">Implementation:
+<ol style="font-weight: bold">Implementation:
  
 <li>Technology - Python</li>
 <li>Framework - Django Rest Framework</li>
