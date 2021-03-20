@@ -9,3 +9,5 @@
   <img src="screen2.png" width="256" height="455">
   <img src="screen3.png" width="256" height="455">
 </p>
+
+<img src="https://github.com/favicon.ico" width="48">
