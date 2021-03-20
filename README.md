@@ -23,6 +23,22 @@ Then install the dependencies:
 Note the `(env)` in front of the prompt. This indicates that this terminal
 session operates in a virtual environment set up by `virtualenv2`.
 
+Custom Settings needed in Settings.py:
+
+STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = 'home'
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+To sync database with the project apply migrations,0020 being the latest:
+
+```sh
+(env)$ python manage.py migrate
+```
+
 Once `pip` has finished downloading the dependencies:
 ```sh
 (env)$ cd project
@@ -30,10 +46,49 @@ Once `pip` has finished downloading the dependencies:
 ```
 And navigate to `http://127.0.0.1:8000/CMSProject/`
 
+In case you want to create admin,run:
+
+```sh
+(env)$ python manage.py createsuperuser
+```
+
+
+
+
+
+
+        
+<ul>Functionalities:
+
+<li>The system will have 2 types of user role: admin and author.Admin users are created using seeding</li>
+<li>Author can register and login using email to the CMS</li>
+<li>Admin can view, edit and delete all the contents created by multiple authors</li>
+<li>Author can create, view, edit and delete contents created by him</li>
+<li>Users can search content by matching terms in title, body, summary and categories</li>
+
+</ul>
+
+<ol>Implementation:
+ 
+<li>Technology - Python</li>
+<li>Framework - Django Rest Framework</li>
+<li>Authentication - Token/Email based</li>
+<li>Applied field level validations</li>
+<li>Used Basic TDD</li>
+
+</ol>
+
+
+
+
+
+
+
+
  
 Some Screenshots:
  
-1.Home:![home](https://user-images.githubusercontent.com/35701613/111859860-e6b31700-8969-11eb-91ff-7ad788c647ae.png)
+1.Home:![home](https://user-images.githubusercontent.com/35701613/111861196-6f35b580-8972-11eb-9adc-0eedece3244d.png)
 
 2.Login:![login](https://user-images.githubusercontent.com/35701613/111859866-f6326000-8969-11eb-8d29-04c2632ba4d7.png)
 
