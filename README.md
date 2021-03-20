@@ -1,2 +1,3 @@
 # CMS
- CMS built using Python and Django
+ A Content Management System built using Python and Django by Zeeshan
+ 
