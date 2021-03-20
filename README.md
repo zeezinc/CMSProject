@@ -43,11 +43,11 @@ And navigate to `http://127.0.0.1:8000/CMSProject/`
 
 <ul>Implementation:
  
-<li>Technology - Python</li>
-<li>Framework - Django Rest Framework</li>
-<li>Authentication - Token/Email based</li>
-<li>Applied field level validations</li>
-<li>Used Basic TDD</li>
+<ol>Technology - Python</ol>
+<ol>Framework - Django Rest Framework</ol>
+<ol>Authentication - Token/Email based</ol>
+<ol>Applied field level validations</ol>
+<ol>Used Basic TDD</ol>
 
 </ul>
 
