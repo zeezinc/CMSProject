@@ -169,9 +169,3 @@ class ContentForm(forms.ModelForm):
             'category': 'Category',
             'doc': 'Document',
         }
-        # fields = ('contentName', 'contentBody', 'contentSummary', 'category', 'doc')
-
-    # def __init__(self, *args, **kwargs):
-    #     super(ContentForm, self).__init__(*args, **kwargs)
-    #     # self.fields['category'].empty_label = "Select"
-    #     # self.fields['doc'].required = False
