@@ -32,12 +32,10 @@ And navigate to `http://127.0.0.1:8000/CMSProject/`
 
 
 
-<style>
-          ol {
-            font-weight:bold;
-          }
-</style>
-        
+
+
+
+
         
 <ul>Functionalities:
 
@@ -58,16 +56,6 @@ And navigate to `http://127.0.0.1:8000/CMSProject/`
 <li>Used Basic TDD</li>
 
 </ol>
-
-
-
-
-
-
-
-
-
-
 
 
 
