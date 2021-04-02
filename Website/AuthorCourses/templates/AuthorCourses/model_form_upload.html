@@ -1,3 +1,5 @@
+{% extends "AuthorCourses/base.html" %}
+
 {% block content %}
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -5,5 +7,5 @@
     <button type="submit">Upload</button>
   </form>
 
-  <p><a href="{% url 'AuthorCourses:home' %}">Return to home</a></p>
-{% endblock %}
+<!--  <p><a href="{% url 'AuthorCourses:home' %}">Return to home</a></p>-->
+{% endblock content%}

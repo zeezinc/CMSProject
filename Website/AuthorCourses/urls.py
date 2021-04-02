@@ -9,7 +9,6 @@ app_name = 'AuthorCourses'
 urlpatterns = [
     path('', home_view, name='home'),
     path('upload/', model_form_upload, name='upload'),
-    path('upload/', model_form_upload, name='upload'),
 
     path('register/', registerPage, name='register'),
     path('login/', loginPage, name='login'),
