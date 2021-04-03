@@ -1,6 +1,9 @@
 from django.conf import settings
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.urls import path
+
+from . import views
 from .views import model_form_upload, loginPage, registerPage, logoutUser, home_view, item_list, \
     item_delete, search_contents, show_content, item_form
 
@@ -21,6 +24,9 @@ urlpatterns = [
 
     path('show_content/<content_id>', show_content, name='show_content'),
     path('search_contents/', search_contents, name='search_contents'),
+
+    # url(r'^(?P<pk>\d+)/$', views.ContentDetail.as_view(), name='content_detail'),
+    # url(r'^(?P<pk>\d+)/$', show_content, name='content_detail'),
 ]
 
 if settings.DEBUG:  # To allow us to view the documents
