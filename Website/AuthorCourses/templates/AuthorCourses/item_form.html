@@ -5,6 +5,7 @@
 <form action="" method="post" autocomplete="off">
     {% csrf_token %}
     {{form.contentName|as_crispy_field}}
+    {{form.author|as_crispy_field}}
     {{form.contentBody|as_crispy_field}}
     {{form.contentSummary|as_crispy_field}}
     <div class="row">

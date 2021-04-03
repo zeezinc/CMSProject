@@ -1,8 +1,10 @@
 from django.db import models
+from django.urls import reverse
 
-# Create your models here.
 from .validators import validate_file
 
+
+# Create your models here.
 
 class Category(models.Model):
     class Meta:
@@ -31,9 +33,16 @@ class AllContents(models.Model):
     contentBody = models.CharField(max_length=100)
     contentSummary = models.CharField(max_length=60)
 
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     doc = models.ForeignKey(Document, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.contentName
+
+    def get_absolute_url(self):
+        # return reverse('AuthorCourses:content_detail', kwargs={'pk': self.pk})
+        # return reverse('AuthorCourses:content_detail', kwargs={'pk': self.pk})
+        return reverse('AuthorCourses:item_update', kwargs={'id': self.id})

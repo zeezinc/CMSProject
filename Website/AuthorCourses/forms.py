@@ -168,4 +168,5 @@ class ContentForm(forms.ModelForm):
             'contentSummary': 'Summary',
             'category': 'Category',
             'doc': 'Document',
+            'author': 'Author',
         }

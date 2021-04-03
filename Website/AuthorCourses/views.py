@@ -10,12 +10,13 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.template import loader
+from django.views.generic import DetailView
 
 from .forms import SignUpForm, DocumentForm, ContentForm
 from .models import AllContents
 
 
-@login_required(login_url='AuthorCourses:login')
+# @login_required(login_url='AuthorCourses:login')
 def home_view(request):
     return render(request, 'AuthorCourses/home.html')
 
@@ -64,7 +65,7 @@ def logoutUser(request):
     return redirect('AuthorCourses:login')
 
 
-@login_required(login_url='AuthorCourses:login')
+# @login_required(login_url='AuthorCourses:login')
 def model_form_upload(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
@@ -78,13 +79,13 @@ def model_form_upload(request):
     })
 
 
-@login_required(login_url='AuthorCourses:login')
+# @login_required(login_url='AuthorCourses:login')
 def item_list(request):
     context = {'item_list': AllContents.objects.all()}
     return render(request, "AuthorCourses/item_list.html", context)
 
 
-@login_required(login_url='AuthorCourses:login')
+# @login_required(login_url='AuthorCourses:login')
 def item_form(request, id=0):
     if request.method == "GET":
         if id == 0:
@@ -104,21 +105,21 @@ def item_form(request, id=0):
         return redirect('/list')
 
 
-@login_required(login_url='AuthorCourses:login')
+# @login_required(login_url='AuthorCourses:login')
 def item_delete(request, id):
     item = AllContents.objects.get(pk=id)
     item.delete()
     return redirect('/list')
 
 
-@login_required(login_url='AuthorCourses:login')
+# @login_required(login_url='AuthorCourses:login')
 def show_content(request, content_id):
     content = AllContents.objects.get(pk=content_id)
     return render(request, 'AuthorCourses/show_content.html',
                   {'content': content})
 
 
-@login_required(login_url='AuthorCourses:login')
+# @login_required(login_url='AuthorCourses:login')
 def search_contents(request):
     if request.method == "POST":
         searched = request.POST['searched']
@@ -133,3 +134,7 @@ def search_contents(request):
         return render(request,
                       'AuthorCourses/search_contents.html',
                       {})
+
+
+# class ContentDetail(DetailView):
+#     model = AllContents
