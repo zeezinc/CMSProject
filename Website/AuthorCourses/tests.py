@@ -6,8 +6,6 @@ from django.core.files import File
 from django.test import TestCase
 import re
 
-from django_webtest import WebTest
-
 from .forms import ContentForm
 from .models import AllContents, Category, Document
 
@@ -147,7 +145,7 @@ class AllContentsViewTest(TestCase):
     # def tearDown(self):
 
 
-class AllContentsFormTest(WebTest):
+class AllContentsFormTest(TestCase):
 
     def setUp(self):
         self.cat = Category(name="Self Paced")
