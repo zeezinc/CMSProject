@@ -132,6 +132,6 @@ Some Screenshots:
 
 10.Search Details:![search2](https://user-images.githubusercontent.com/35701613/111859950-6c36c700-896a-11eb-9cff-46e98ccbcde3.png)
 
-11.Coverage Report:
-![coverage_report](https://user-images.githubusercontent.com/35701613/113508900-3c91dc80-9570-11eb-902b-6da4e1fbcef8.png)
+11.Coverage Report:![coverage_report](https://user-images.githubusercontent.com/35701613/113508930-664b0380-9570-11eb-9528-2872411db950.png)
+
 
