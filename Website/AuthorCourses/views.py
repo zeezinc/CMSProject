@@ -89,17 +89,17 @@ def item_list(request):
 def item_form(request, id=0):
     if request.method == "GET":
         if id == 0:
-            form = ContentForm()
+            form = ContentForm(entry=())
         else:
             item = AllContents.objects.get(pk=id)
-            form = ContentForm(instance=item)
+            form = ContentForm(instance=item, entry=item)
         return render(request, "AuthorCourses/item_form.html", {'form': form})
     else:
         if id == 0:
-            form = ContentForm(request.POST)
+            form = ContentForm(request.POST, entry=())
         else:
             item = AllContents.objects.get(pk=id)
-            form = ContentForm(request.POST, instance=item)
+            form = ContentForm(request.POST, instance=item, entry=item)
         if form.is_valid():
             form.save()
         return redirect('/list')

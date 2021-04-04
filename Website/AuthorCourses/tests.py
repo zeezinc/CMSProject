@@ -4,6 +4,9 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.core.files import File
 from django.test import TestCase
+import re
+
+from .forms import ContentForm
 from .models import AllContents, Category, Document
 
 
@@ -34,14 +37,14 @@ class AllContentsModelTest(TestCase):
         cat.save()
 
         file_mock = mock.MagicMock(spec=File)
-        file_mock.name = 'test2.pdf'
-        docy = Document(document=file_mock)
-        docy.save()
+        file_mock.name = 'test.pdf'
+        self.docy = Document(document=file_mock)
+        self.docy.save()
 
         self.user = get_user_model().objects.create(username='some_user')
 
-        # entry = AllContents.objects.create(contentName="My entry title", author=user, category=cat, doc=docy)
-        self.entry=AllContents.objects.create(contentName="My entry title", author=self.user, category=cat, doc=docy)
+        self.entry = AllContents.objects.create(contentName="My entry title", author=self.user, category=cat,
+                                                doc=self.docy)
         # cls.assertIsNotNone(entry)
 
     def test_string_representation(self):
@@ -57,21 +60,13 @@ class AllContentsModelTest(TestCase):
         self.assertEqual(max_length, 200)
 
     def test_file_field(self):
-        file_mock = mock.MagicMock(spec=File)
-        file_mock.name = 'test.pdf'
-        file_model = Document(document=file_mock)
-        self.assertEqual(file_model.document.name, file_mock.name)
+        self.assertIsNotNone(re.search(r'^documents/test_?[a-zA-Z0-9]*\.pdf$', str(self.docy.document)))    #regular expression to check for instance of magicmock
 
     def test_get_absolute_url(self):
         self.assertIsNotNone(self.entry.get_absolute_url())
 
 
 class AllContentsViewTest(TestCase):
-
-    # def setUp(self):
-    #     self.user = get_user_model().objects.create(username='some_user')
-    #     self.entry = Entry.objects.create(title='1-title', body='1-body',
-    #                                       author=self.user)
 
     def setUp(self):
         # Set up non-modified objects used by all test methods
@@ -89,7 +84,8 @@ class AllContentsViewTest(TestCase):
     def test_basic_view(self):
         response = self.client.get(self.entry.get_absolute_url())
         self.assertEqual(response.status_code, 200)  # 302 since it needs authentication to show homepage should be 200
-                                                     # Remove @login_required on home_view and test
+        # Remove @login_required and test
+
     def test_title_in_entry(self):
         response = self.client.get(self.entry.get_absolute_url())
         self.assertContains(response, self.entry.contentName)
@@ -98,10 +94,64 @@ class AllContentsViewTest(TestCase):
         response = self.client.get(self.entry.get_absolute_url())
         self.assertContains(response, self.entry.contentBody)
 
+    # def tearDown(self):
+
+
+class AllContentsFormTest(TestCase):
+
+    def setUp(self):
+        self.cat = Category(name="Self Paced")
+        self.cat.save()
+
+        file_mock = mock.MagicMock(spec=File)
+        file_mock.name = 'test2.pdf'
+        self.docy = Document(document=file_mock)
+        self.docy.save()
+
+        self.user = get_user_model().objects.create_user('Henderson')
+        self.entry = AllContents.objects.create(contentName="My entry title", author=self.user, category=self.cat,
+                                                doc=self.docy)
+
+    def test_init(self):  # checks if form takes an _init entry keyword argument
+        ContentForm(entry=self.entry)
+
+    def test_init_without_entry(self):  # raises exception if no entry keyword found
+        with self.assertRaises(KeyError):
+            ContentForm()
+
+    def test_valid_data(self):      # tests if form takes valid data
+        form = ContentForm({
+            'contentName': "Elon Musk",
+            'contentBody': "Hi there",
+            'contentSummary': "Selfie",
+            'category': self.cat,
+            'doc': self.docy,
+            'author': self.user,
+        }, entry=self.entry)
+
+        self.assertTrue(form.is_valid())
+        cont = form.save()
+        self.assertEqual(cont.contentName, "Elon Musk")
+        self.assertEqual(cont.contentBody, "Hi there")
+        self.assertEqual(cont.contentSummary, "Selfie")
+        self.assertEqual(cont.category.name, "Self Paced")
+        self.assertEqual(cont.entry, self.entry)
+
+    def test_blank_data(self):          # tests form with no data and matches errors with required fields
+        form = ContentForm({}, entry=self.entry)
+        self.assertFalse(form.is_valid())
+        self.assertEqual(form.errors, {
+            'contentName': ['This field is required.'],
+            'contentBody': ['This field is required.'],
+            'contentSummary': ['This field is required.'],
+            'category': ['This field is required.'],
+            'doc': ['This field is required.'],
+            'author': ['This field is required.'],
+        })
 
 class ProjectTests(TestCase):
 
-    def test_homepage(self):
+    def test_homepage(self):            # tests homepage working correctly
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)  # 302 since it needs authentication to show homepage should be 200
-                                                     # Remove @login_required on home_view and test
+        # Remove @login_required on home_view and test

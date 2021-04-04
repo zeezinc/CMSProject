@@ -170,3 +170,13 @@ class ContentForm(forms.ModelForm):
             'doc': 'Document',
             'author': 'Author',
         }
+
+    def __init__(self, *args, **kwargs):
+        self.entry = kwargs.pop('entry')  # the content entry instance
+        super().__init__(*args, **kwargs)
+
+    def save(self):
+        cont = super().save(commit=False)
+        cont.entry = self.entry
+        cont.save()
+        return cont
