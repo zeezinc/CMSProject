@@ -134,6 +134,7 @@ Some Screenshots:
 
 11.Coverage Report:![coverage_report](https://user-images.githubusercontent.com/35701613/113508997-dc4f6a80-9570-11eb-98a0-2a88c169bbdf.png)
 
-12.Coverage Branch Report![coverage_report_branch](https://user-images.githubusercontent.com/35701613/113509007-e6716900-9570-11eb-8a7c-b59c277545ea.png)
+12.Coverage Branch Report:![coverage_report_branch](https://user-images.githubusercontent.com/35701613/113509007-e6716900-9570-11eb-8a7c-b59c277545ea.png)
 
+13.Coverage HTML Report:![coverage_report_html](https://user-images.githubusercontent.com/35701613/113509028-0012b080-9571-11eb-96e4-865fba1e5f0c.png)
 
