@@ -43,6 +43,4 @@ class AllContents(models.Model):
         return self.contentName
 
     def get_absolute_url(self):
-        # return reverse('AuthorCourses:content_detail', kwargs={'pk': self.pk})
-        # return reverse('AuthorCourses:content_detail', kwargs={'pk': self.pk})
         return reverse('AuthorCourses:item_update', kwargs={'id': self.id})
