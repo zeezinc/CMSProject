@@ -140,5 +140,5 @@ Some Screenshots:
 
 
 <p align="center">
-  <img width="460" height="300" src="![coverage_report_branch](https://user-images.githubusercontent.com/35701613/113509007-e6716900-9570-11eb-8a7c-b59c277545ea.png)">
+  <img width="460" height="300" src="![test1](https://user-images.githubusercontent.com/35701613/113509120-77484480-9571-11eb-8096-ea7d461363ae.png)">
 </p>
