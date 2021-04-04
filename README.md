@@ -52,10 +52,34 @@ In case you want to create admin,run:
 (env)$ python manage.py createsuperuser
 ```
 
+For Coverage Report:
 
+```sh
+(env)$ coverage run --include='./*' manage.py test
+```
 
+```sh
+(env)$ coverage report
+```
 
+For Branch Coverage:
 
+```sh
+(env)$ coverage run --include='./*' --branch manage.py test
+```
+```sh
+(env)$ coverage report
+```
+
+For Inspecting Coverage:
+
+```sh
+(env)$ coverage html
+```
+
+```sh
+(env)$ http://localhost:63349/AjackusProject/Website/htmlcov/index.html
+```
 
         
 <ul>Functionalities:
