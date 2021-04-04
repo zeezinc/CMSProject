@@ -1,3 +1,4 @@
+import shutil
 from unittest import mock
 
 from django.contrib.auth import get_user_model
@@ -31,9 +32,9 @@ class LogInTest(TestCase):
 class HomePageTest(TestCase):
 
     def test_homepage(self):  # tests homepage working correctly
+        self.client.force_login(User.objects.get_or_create(username='roxy')[0])
         response = self.client.get('/')
-        self.assertEqual(response.status_code, 200)  # 302 since it needs authentication to show homepage should be 200
-        # Remove @login_required on home_view and test
+        self.assertEqual(response.status_code, 200)  # force_login or Remove @login_required on home_view and test
 
 
 class CategoryModelTest(TestCase):
@@ -74,10 +75,17 @@ class DocumentModelTest(TestCase):
         self.assertIsNotNone(re.search(r'^documents/test_?[a-zA-Z0-9]*\.pdf$', str(
             self.docy.document)))  # regular expression to check for instance of magicmock
 
+    def tearDown(self):  # To remove and delete the temporary magicmock files used for testing
+        print("\nDeleting temporary files...\n")
+        try:
+            shutil.rmtree('media/documents')
+        except OSError:
+            pass
+
 
 class AllContentsModelTest(TestCase):
 
-    def setUp(self):        # Set up non-modified objects used by all test methods
+    def setUp(self):  # Set up non-modified objects used by all test methods
         cat = Category(name="Self Paced")
         cat.save()
 
@@ -98,7 +106,7 @@ class AllContentsModelTest(TestCase):
     def test_verbose_name_plural(self):
         self.assertEqual(str(AllContents._meta.verbose_name_plural), "all contents")
 
-    def test_title_max_length(self):
+    def test_fields_max_length(self):
         ac = AllContents.objects.get(id=1)
 
         max_length_title = ac._meta.get_field('contentName').max_length
@@ -113,11 +121,17 @@ class AllContentsModelTest(TestCase):
     def test_get_absolute_url(self):
         self.assertIsNotNone(self.entry.get_absolute_url())
 
+    def tearDown(self):
+        print("\nDeleting temporary files...\n")
+        try:
+            shutil.rmtree('media/documents')
+        except OSError:
+            pass
+
 
 class AllContentsViewTest(TestCase):
 
-    def setUp(self):
-        # Set up non-modified objects used by all test methods
+    def setUp(self):  # Set up non-modified objects used by all test methods
         cat = Category(name="Self Paced")
         cat.save()
 
@@ -128,6 +142,8 @@ class AllContentsViewTest(TestCase):
 
         self.user = get_user_model().objects.create(username='some_user')
         self.entry = AllContents.objects.create(contentName="My entry title", author=self.user, category=cat, doc=docy)
+
+        self.client.force_login(User.objects.get_or_create(self.user)[0])
 
     def test_basic_view(self):
         response = self.client.get(self.entry.get_absolute_url())
@@ -142,7 +158,16 @@ class AllContentsViewTest(TestCase):
         response = self.client.get(self.entry.get_absolute_url())
         self.assertContains(response, self.entry.contentBody)
 
-    # def tearDown(self):
+    def test_author_in_entry(self):
+        response = self.client.get(self.entry.get_absolute_url())
+        self.assertContains(response, self.entry.author)
+
+    def tearDown(self):
+        print("\nDeleting temporary files...\n")
+        try:
+            shutil.rmtree('media/documents')
+        except OSError:
+            pass
 
 
 class AllContentsFormTest(TestCase):
@@ -192,7 +217,13 @@ class AllContentsFormTest(TestCase):
             'contentName': ['This field is required.'],
             'contentBody': ['This field is required.'],
             'contentSummary': ['This field is required.'],
-            'category': ['This field is required.'],
             'doc': ['This field is required.'],
             'author': ['This field is required.'],
         })
+
+    def tearDown(self):
+        print("\nDeleting temporary files...\n")
+        try:
+            shutil.rmtree('media/documents')
+        except OSError:
+            pass

@@ -35,7 +35,7 @@ class AllContents(models.Model):
 
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True)
 
     doc = models.ForeignKey(Document, on_delete=models.CASCADE)
 
