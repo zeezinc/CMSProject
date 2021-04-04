@@ -38,11 +38,11 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # Unit test / coverage reports
-htmlcov/
+# htmlcov/      #Uncomment for development
 .tox/
 .nox/
 #.coverage      #Uncomment for development
-#.coverage.*
+#.coverage.*    #Uncomment for development
 .cache
 nosetests.xml
 coverage.xml
