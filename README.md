@@ -132,4 +132,8 @@ Some Screenshots:
 
 10.Search Details:![search2](https://user-images.githubusercontent.com/35701613/111859950-6c36c700-896a-11eb-9cff-46e98ccbcde3.png)
 
-11.Coverage Report:!(https://user-images.githubusercontent.com/35701613/113508930-664b0380-9570-11eb-9528-2872411db950.png)
+11.Coverage Report:![coverage_report](https://user-images.githubusercontent.com/35701613/113508997-dc4f6a80-9570-11eb-98a0-2a88c169bbdf.png)
+
+12.Coverage Branch Report![coverage_report_branch](https://user-images.githubusercontent.com/35701613/113509007-e6716900-9570-11eb-8a7c-b59c277545ea.png)
+
+
