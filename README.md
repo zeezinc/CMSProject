@@ -1,6 +1,8 @@
 # CMS
  A Content Management System built using Python and Django by Zeeshan
  
+ ![Your Repository's Stats](https://github-readme-stats.vercel.app/api?username=zeezinc&show_icons=true)
+ 
 The first thing to do is to clone the repository:
 
 ```sh
