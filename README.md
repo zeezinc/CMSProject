@@ -17,6 +17,13 @@ $ virtualenv2 --no-site-packages env
 $ source env/bin/activate
 ```
 
+OR
+
+```sh
+$ python -m venv env
+$ env\Scripts\activate
+```
+
 Then install the dependencies:
 
 ```sh
